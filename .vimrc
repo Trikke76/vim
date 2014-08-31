@@ -29,6 +29,8 @@ set smartcase                           " Unless there's a capital letter
 set incsearch                           " Incremental searching
 set hlsearch                            " Highlight search results
 set cursorline                          " Bring cursor back on current line
+set laststatus=2                        " Set statusbar to max 2 lines
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]
 hi CursorLine term=none cterm=none ctermbg=0    " Highlight current line
 
 filetype on                             " Enable filetype detection
@@ -67,7 +69,7 @@ autocmd FileType php setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
 
 
-endif                                                                       " version <= 700
+endif                                     " version <= 700
 
 if !exists("autocommands_loaded")
       let autocommands_loaded = 1

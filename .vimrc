@@ -58,9 +58,7 @@ set shiftround                          " always round indents to multiple of sh
 set copyindent                          " use existing indents for new indents
 set preserveindent                      " save as much indent structure as possible
 let g:indentLine_color_term = 239       " set indendent color
-
-
-" nnoremap <Leader>r gq}                  " Reformat paragraphs and list.
+nnoremap <Leader>r gq}                  " Reformat paragraphs and list.
 
 
 

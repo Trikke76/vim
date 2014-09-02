@@ -1,5 +1,6 @@
 if version >= 700
 
+
 "------ Meta ------"
 " clear all autocommands!
 autocmd!
@@ -8,6 +9,12 @@ set fileformats=unix,dos,mac            " support all three newline formats
 set viminfo=                            " don't use or save viminfo files
 set background=dark                     " Tell Background color to VIM
 syntax on
+
+"------ AutoLoad plugins ------"
+execute pathogen#infect()
+
+"------ Use color scheme ------"
+colorscheme monokai
 
 
 "------ Console UI & Text display ------"
@@ -50,7 +57,11 @@ set tabstop=8                           " for proper display of files with tabs
 set shiftround                          " always round indents to multiple of shiftwidth
 set copyindent                          " use existing indents for new indents
 set preserveindent                      " save as much indent structure as possible
-filetype plugin indent on               " load filetype plugins and indent settings
+let g:indentLine_color_term = 239       " set indendent color
+
+
+" nnoremap <Leader>r gq}                  " Reformat paragraphs and list.
+
 
 
 "------ Filetypes ------"
@@ -67,6 +78,12 @@ autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " PHP
 autocmd FileType php setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
+" ASCIIDOC for VIM
+autocmd BufRead,BufNewFile *.txt,*.asciidoc,README,TODO,CHANGELOG,NOTES,ABOUT
+      \ setlocal autoindent expandtab tabstop=8 softtabstop=2 shiftwidth=2 filetype=asciidoc
+      \ textwidth=70 wrap formatoptions=tcqn
+      \ formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
+      \ comments=s1:/*,ex:*/,://,b:#,:%,:XCOMM,fb:-,fb:*,fb:+,fb:.,fb:>
 
 
 endif                                     " version <= 700
@@ -79,4 +96,3 @@ endif
 " This beauty remembers where you were the last time you edited the file,
 " and returns to the same position.
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-
